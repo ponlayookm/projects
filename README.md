@@ -1,1 +1,1 @@
-# projects
+Various projects and labs to practice
