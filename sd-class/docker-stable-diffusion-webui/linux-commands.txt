@@ -1,0 +1,1 @@
+rsync -az /source /destination --info=progress2 --no-i-r
