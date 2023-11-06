@@ -1,0 +1,32 @@
+networks:
+  proxy:
+    external: true
+
+volumes:
+  grafana-data:
+   external: true
+
+services:
+  grafana:
+    image: grafana/grafana:main-ubuntu
+    networks:
+      - proxy
+    environment:
+      - GF_AZURE_MANAGED_IDENTITY_ENABLED=true
+      - GF_AZURE_MANAGED_IDENTITY_CLIENT_ID=$(MANAGED_ID)
+      - GF_AZURE_MANAGED_IDENTITY_RESOURCE=https://management.azure.com/
+    volumes:
+      - grafana-data:/var/lib/grafana
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik-public
+      - traefik.constraint-label=traefik-public
+      - traefik.http.routers.grafana-http.rule=Host(`${DOMAIN?Variable not set}`)
+      - traefik.http.routers.grafana-http.entrypoints=http
+      - traefik.http.routers.grafana-http.middlewares=https-redirect
+      - traefik.http.routers.grafana-https.rule=Host(`${DOMAIN?Variable not set}`)
+      - traefik.http.routers.grafana-https.entrypoints=https
+      - traefik.http.routers.grafana-https.tls=true
+      - traefik.http.routers.grafana-https.tls.certresolver=le
+      - traefik.http.services.grafana.loadbalancer.server.port=3000
+    restart: unless-stopped

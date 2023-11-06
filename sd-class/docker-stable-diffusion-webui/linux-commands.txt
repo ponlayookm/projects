@@ -1,1 +1,5 @@
 rsync -az /source /destination --info=progress2 --no-i-r
+
+for i in {1..20}; do
+    cp -r sd00 sd$(printf "%02d" $i) | pv -lep -s $(du -sb sd00 | awk '{print $1}')
+done
