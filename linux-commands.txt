@@ -4,7 +4,7 @@ rsync -az /source /destination --info=progress2 --no-i-r
 == VIM ==
 i = insert mode
 A = go to end of line and insert mode
-$ = go to end of line no inert mode
+$ = go to end of line to insert mode
 :q = quit
 :w = write/save (can be use together with q)
 esc = command/normal mode
