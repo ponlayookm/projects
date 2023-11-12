@@ -1,0 +1,36 @@
+== sync folders ==
+rsync -az /source /destination --info=progress2 --no-i-r
+
+== VIM ==
+i = insert mode
+A = go to end of line and insert mode
+$ = go to end of line no inert mode
+:q = quit
+:w = write/save (can be use together with q)
+esc = command/normal mode
+vim -o <file1> <file2> = open 2 files in horizontal split
+vim -O <file1> <file2> = open 2 files in vertical split
+:v = visual mode, highlighted text
+ + v = yank
+ + p = put/pasts
+ + :sort ui = sort the highlighted text alphabetically
+:%s/<text to be replaced>/<text>
+
+** in normal mode **
+j/k = cursur down/up
+h/l = cursur left/right
+gg = move to top line of the file
+G = move to bottom line of the file
+u = undo
+x = delete one character
+dd = copy and then delete the line (can use p to paste the content)
+:split/sp <file name> = open file in horizontal split window
+:vsplit/vsp <file> = open file in vertical split window
+ctrl + ww = switch between splits
+:q (in the split window) closed the cursur's split window
+:r <file name> = read content of another file and insert into current buffer
+:e = read and edit content
+:bp/bn/bd = previous/next/delete buffer
+:badd <filename> = add a new buffer from a file without switching to it
+:set number/nonumber = shows/hide line numbers
+
